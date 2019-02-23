@@ -35,6 +35,9 @@ public class Student {
 	@Column(name="telephone")
 	private String telephone;
 	
+	@Column
+	private String password;
+	
 	// we would map address differently
 	// didn't get to it yet, but we will when we get to learning
 	// about databases and relationships
@@ -47,7 +50,7 @@ public class Student {
 		
 	}
 
-	public Student(String firstName, String lastName, String email, int age, String telephone) {
+	public Student(String firstName, String lastName, String email, int age, String telephone, String password) {
 		
 		super();
 		
@@ -56,6 +59,7 @@ public class Student {
 		this.email = email;
 		this.age = age;
 		this.telephone = telephone;
+		this.password = password;
 		//this.address = address;
 		
 	}
@@ -119,23 +123,36 @@ public class Student {
 		this.telephone = telephone;
 		
 	}
-
+	
+	public String getPassword() {
+		
+		return password;
+		
+	}
+	
+	public void setPassword(String password) {
+		
+		this.password = password;
+		
+	}
+	
 //	public Address getAddress() {
-//		
-//		return address;
-//		
-//	}
+//	
+//	return address;
+//	
+//}
 //
-//	public void setAddress(Address address) {
-//		
-//		this.address = address;
-//		
-//	}
+//public void setAddress(Address address) {
+//	
+//	this.address = address;
+//	
+//}
 
 	@Override
 	public String toString() {
 		
-		return firstName + ", " + lastName + ", " + email + ", " + age + ", " + telephone;
+		return firstName + ", " + lastName + ", " + email + ", " + age + ", " + telephone + ", " + password;
+		
 	}
 
 	@Override
@@ -177,6 +194,14 @@ public class Student {
 				return false;
 			
 		} else if (!lastName.equals(other.lastName))
+			return false;
+		
+		if (password == null) {
+			
+			if (other.password != null)
+				return false;
+			
+		} else if (!password.equals(other.password))
 			return false;
 		
 		if (telephone == null) {
