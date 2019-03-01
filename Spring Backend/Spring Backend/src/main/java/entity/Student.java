@@ -35,7 +35,7 @@ public class Student {
 	@Column(name="telephone")
 	private String telephone;
 	
-	@Column
+	@Column(name="password")
 	private String password;
 	
 	// we would map address differently
