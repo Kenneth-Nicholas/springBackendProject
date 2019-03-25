@@ -22,6 +22,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentRepository studentRepository;
+		
+	@Autowired
+	SendMail sendMail;
 	
 	// Submit a Student's details
 	
@@ -32,7 +35,7 @@ public class StudentController {
 	public void submitStudentDetails(@RequestBody Student student) {
 		
 		this.studentRepository.save(student);
-		
+		sendMail.sendMail(student.getEmail(), "Thank you for creating an Arch Arrivals Account!", "Hi " + student.getFirstName() + "! Thank you for creating an Arch Arrivals Account. You can start by searching for an event on our site, or even add an event of your own to our database that other users will be able to see.");
 		System.out.println(student);
 		
 	}
