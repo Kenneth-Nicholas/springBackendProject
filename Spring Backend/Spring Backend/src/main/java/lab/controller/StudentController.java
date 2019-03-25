@@ -33,6 +33,8 @@ public class StudentController {
 		
 		this.studentRepository.save(student);
 		
+		System.out.println(student);
+		
 	}
 	
 	// Find a Student by e-mail address
@@ -59,6 +61,8 @@ public class StudentController {
 	
 	@ResponseBody
 	public ResponseEntity<Student>loginStudent(@RequestBody Student student) {
+		
+		System.out.println(student);
 		
 		Student studentMatch = this.studentRepository.findOne(student.getEmail());
 		
