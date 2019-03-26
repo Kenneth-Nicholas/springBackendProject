@@ -36,6 +36,7 @@ public class StudentController {
 		
 		this.studentRepository.save(student);
 		sendMail.sendMail(student.getEmail(), "Thank you for creating an Arch Arrivals Account!", "Hi " + student.getFirstName() + "! Thank you for creating an Arch Arrivals Account. You can start by searching for an event on our site, or even add an event of your own to our database that other users will be able to see.");
+		SendSms.sendSms(student.getTelephone());
 		System.out.println(student);
 		
 	}
