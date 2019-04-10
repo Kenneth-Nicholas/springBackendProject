@@ -2,6 +2,8 @@ package lab.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -64,14 +66,14 @@ public class StudentController {
 			method = RequestMethod.POST)
 	
 	@ResponseBody
-	public ResponseEntity<Student>loginStudent(@RequestBody Student student) {
+	public ResponseEntity<Student>loginStudent(@RequestBody Student student, HttpSession session) {
 		
 		System.out.println(student);
 		
 		Student studentMatch = this.studentRepository.findOne(student.getEmail());
 		
 		if(studentMatch.getPassword().equals(student.getPassword())) {
-			
+			session.setAttribute("loggedInUser", studentMatch);
 			return new ResponseEntity<>(studentMatch, HttpStatus.OK);
 			
 		} else {
@@ -96,5 +98,5 @@ public class StudentController {
 		return new ResponseEntity<ArrayList<Student>>( listOfStudents, HttpStatus.OK);
 		
 	}
-
+	
 }

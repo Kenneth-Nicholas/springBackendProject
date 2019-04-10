@@ -42,8 +42,6 @@ public class Student {
 	// didn't get to it yet, but we will when we get to learning
 	// about databases and relationships
 	
-//	private Address address;
-	
 	public Student() {
 		
 		super();
@@ -60,7 +58,6 @@ public class Student {
 		this.age = age;
 		this.telephone = telephone;
 		this.password = password;
-		//this.address = address;
 		
 	}
 
@@ -136,17 +133,6 @@ public class Student {
 		
 	}
 	
-//	public Address getAddress() {
-//	
-//	return address;
-//	
-//}
-//
-//public void setAddress(Address address) {
-//	
-//	this.address = address;
-//	
-//}
 
 	@Override
 	public String toString() {
