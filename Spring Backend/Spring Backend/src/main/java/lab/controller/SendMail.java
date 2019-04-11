@@ -11,6 +11,7 @@ public class SendMail {
 private JavaMailSender emailSender;
 
 public void sendMail(String toEmail, String subject, String msg) {
+	
 SimpleMailMessage message = new SimpleMailMessage();
 message.setTo(toEmail);
 message.setSubject(subject);
