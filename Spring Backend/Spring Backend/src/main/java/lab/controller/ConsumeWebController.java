@@ -2,9 +2,6 @@ package lab.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,18 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import entity.EventDTO;
 import entity.Events;
 import entity.StLouisEvents;
-import entity.Student;
 import repository.EventRepository;
 
 @RestController
@@ -56,16 +50,17 @@ public class ConsumeWebController {
    
    @RequestMapping(value="/emailEvent", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
    @ResponseBody
-   public void emailEvent(@RequestParam("eventId") int eventId, HttpSession session) {
+   public void emailEvent(@RequestParam("eventId") int eventId) {
+	   
+	   	System.out.println("emailEvent method called");
 	   
 	    System.out.println("Searching for: " + eventId);
-	   
-	    Student user = (Student) session.getAttribute("loggedInUser");
-		
 		Events myEvent = this.eventRepo.findOne(eventId);
 		System.out.println("Events found: " + myEvent);
 		
-		sendMail.sendMail(user.getEmail(), "Event Notification", myEvent.getDescription());
+		String emailContents = myEvent.getName() + "/n" + myEvent.getDescription() + "/n" + myEvent.getStart() + "/n" + myEvent.getEnd() + "/n" + myEvent.getSummary();
+		
+		sendMail.sendMail("nicholas.kenneth.j@gmail.com", "Event Notification", emailContents);
 		
 	}
    
